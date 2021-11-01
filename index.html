@@ -1,0 +1,30 @@
+<script>
+  function loadStreams(search){
+        let url = `http://91.132.145.114/json/stations/byname/${search}`;
+
+        fetch(url)
+        .then(res => res.json())
+        .then(out =>{
+            var jsonArray = out
+            var arrayLength = jsonArray.length;
+            for (var i = 0; i < arrayLength; i++) {
+                console.log(`Stream Name: ${jsonArray[i].name} Stream link: ${jsonArray[i].url}`);
+                document.write(`<b>Stream Name:</b> ${jsonArray[i].name} `);
+                document.write(`<b>Stream link:</b> <a href="${jsonArray[i].url}">Link</a> `);
+                document.write(`<b>Embeded audio:</b> <audio src="${jsonArray[i].url}" controls></audio>`);
+                document.write(`</br>`);
+                //Do something
+            }
+        })
+    }
+
+    const urlParams = new URLSearchParams(document.location.search);
+    const search = urlParams.get('search');
+    if (search == null){
+        document.write(`You must put a search in the url bar like ${document.location}?search=pop`);
+    }
+    else
+    {
+        loadStreams(search)
+    }
+</script>
