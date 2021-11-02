@@ -21,7 +21,7 @@
     const urlParams = new URLSearchParams(document.location.search);
     const search = urlParams.get('search');
     if (search == null){
-        document.write(`You must put a search in the url bar like ${document.location.origin}?search=pop`);
+        document.write(`You must put a search in the url bar like <a href="${document.location.origin}?search=pop">${document.location.origin}?search=pop</a>`);
     }
     else
     {
