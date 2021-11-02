@@ -1,5 +1,6 @@
 <script>
   function loadStreams(search){
+        // Fetch json from proxy so it can work (They use http)
         let url = `https://dashproxy.uwuugle.tech/json/stations/byname/${search}`;
 
         fetch(url)
@@ -8,12 +9,14 @@
             var jsonArray = out
             var arrayLength = jsonArray.length;
             for (var i = 0; i < arrayLength; i++) {
+                /* Debug
                 console.log(`Stream Name: ${jsonArray[i].name} Stream link: ${jsonArray[i].url}`);
+                */
+                // Add code to the site
                 document.write(`<b>Stream Name:</b> ${jsonArray[i].name} `);
                 document.write(`<b>Stream link:</b> <a href="${jsonArray[i].url}">Link</a> `);
                 document.write(`<b>Embeded audio:</b> <audio src="${jsonArray[i].url}" controls></audio>`);
                 document.write(`</br>`);
-                //Do something
             }
         })
     }
@@ -21,7 +24,9 @@
     const urlParams = new URLSearchParams(document.location.search);
     const search = urlParams.get('search');
     if (search == null){
-        document.write(`You must put a search in the url bar like <a href="${document.location.origin}?search=pop">${document.location.origin}?search=pop</a>`);
+        document.write(`You must put a search in the url bar like <a href="${document.location.origin}?search=pop">${document.location.origin}?search=pop</a><br>`);
+        document.write(`<b>DO NOT</b> put common terms like "radio" as it can crash/lag your browser<br>`);
+        document.write(`<b>DO NOT</b> put nothing after "search" as it can also crash/lag your browser but it has a higher chance to crash as there are alot of streams`);
     }
     else
     {
